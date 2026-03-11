@@ -10,19 +10,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 import book_Management_System.dao.BookDAO;
 import book_Management_System.model.Book;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import springmvc.dao.StudentDao;
+import springmvc.dto.Student;
 
 @Controller
 public class BookController {
 
-	@RequestMapping("books/add")
-	@ResponseBody
+	@RequestMapping("books")
 	public String insert(@ModelAttribute Book book) {
 		System.out.println("data is inserted");
 
 		BookDAO bookDAO = new BookDAO();
 		return bookDAO.insert(book);
 	}
+	
+	@RequestMapping("/fid")
+	public ModelAndView fetchById(@ModelAttribute Book std) {
+		BookDAO bookDAO = new BookDAO()
+		Book book = bookDAO.fetchById(std.getId());
 
+		ModelAndView modelAndView = new ModelAndView("fetch.jsp");
+		modelAndView.addObject("data", book);
+		return modelAndView;
+	}
+	
 	@RequestMapping("/booksread")
 	public ModelAndView fetchAll() {
 		BookDAO bookDAO = new BookDAO();
@@ -40,8 +53,23 @@ public class BookController {
 		
 		List<Book> list = bookDAO.fetchAll();
 
-		ModelAndView modelAndView = new ModelAndView("bookList.jsp");
+		ModelAndView modelAndView = new ModelAndView("/booksread");
 		modelAndView.addObject("BookDetails", list);
+		return modelAndView;
+	}
+	
+
+	@RequestMapping("/did")
+	@ResponseBody
+	public ModelAndView deleteById(@ModelAttribute Book std) {
+//		System.out.println(id);
+		BookDAO bookDao = new BookDAO();
+		bookDao.deleteById(std.getId());
+		
+		List<Book> list = bookDao.fetchAll();
+
+		ModelAndView modelAndView = new ModelAndView("/booksread");
+		modelAndView.addObject("data", list);
 		return modelAndView;
 	}
 }

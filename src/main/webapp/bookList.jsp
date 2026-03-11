@@ -15,6 +15,8 @@
 <th>title</th>
 <th>author</th>
 <th>price</th>
+<th>update</th>
+<th>delete</th>
 </tr>
 <% List<Book> list = (List<Book>)request.getAttribute("BookDetails");%>
 <%if(list!=null)
@@ -24,6 +26,8 @@ for(Book b:list){%>
 <td><%=b.getTitle()%></td>
 <td><%=b.getAuthor()%></td>
 <td><%=b.getPrice()%></td>
+<td><a href="did?id=<%=b.getId() %>">delete</a></td>
+<td><a href="editBook.jsp?id=<%=b.getId()%>&&title=<%=b.getTitle()%>&&author=<%=b.getAuthor()%>&&price=<%=b.getPrice()%>">edit</a></td>
 </tr>
 <%} %>
 </table>

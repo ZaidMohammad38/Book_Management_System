@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
+import springmvc.dto.Student;
 
 public class BookDAO {
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("dev1");
@@ -20,6 +21,12 @@ public class BookDAO {
 		entityTransaction.commit();
 		return "data is inserted";
 	}
+	
+	public Book fetchById(int id) {
+		// TODO Auto-generated method stub
+		Book book = entityManager.find(Book.class, id);
+		return book;
+	}
 
 	public List<Book> fetchAll() {
 		Query q = entityManager.createQuery("select a from Book a");
@@ -30,10 +37,33 @@ public class BookDAO {
 			return list;
 		}
 	}
-	
+
 	public void edit(Book book) {
 		entityTransaction.begin();
 		entityManager.merge(book);
 		entityTransaction.commit();
+	}
+
+//	public String DeleteById(long id) {
+//		Book book = entityManager.find(Book.class,id);
+//		if(book == null) {
+//			return "no book found";
+//		}else {
+//			entityTransaction.begin();
+//			entityManager.remove(book);
+//			entityTransaction.commit();
+//			return "book data deleted";
+//		}
+	
+	public String deleteById(long id) {
+		Book book = entityManager.find(Book.class, id);
+		if (book == null) {
+			return "no data found";
+		} else {
+			entityTransaction.begin();
+			entityManager.remove(book);
+			entityTransaction.commit();
+			return "data deleted";
+		}
 	}
 }

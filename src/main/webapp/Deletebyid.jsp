@@ -7,10 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="books" method="post">
-<input type="text" name="title" placeholder="enter title"><br>
-<input type="text" name="author" placeholder="enter author"><br>
-<input type="number" name="price" placeholder="enter price"><br>
+<form action="did">
+<input type="number" name="id" placeholder="enter the id">
 <button>submit</button>
 </form>
 </body>
