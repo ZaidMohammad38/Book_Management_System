@@ -6,7 +6,57 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Books List</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f4f8;
+        display: flex;
+        justify-content: center;
+        padding: 50px 0;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    th, td {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #4A90E2;
+        color: #fff;
+        font-size: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #e1f0ff;
+    }
+
+    a {
+        color: #4A90E2;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    a:hover {
+        color: #357ABD;
+        text-decoration: underline;
+    }
+</style>
 </head>
 <body>
 <table border="">

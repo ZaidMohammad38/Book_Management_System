@@ -26,16 +26,6 @@ public class BookController {
 		return bookDAO.insert(book);
 	}
 	
-	@RequestMapping("/fid")
-	public ModelAndView fetchById(@ModelAttribute Book std) {
-		BookDAO bookDAO = new BookDAO()
-		Book book = bookDAO.fetchById(std.getId());
-
-		ModelAndView modelAndView = new ModelAndView("fetch.jsp");
-		modelAndView.addObject("data", book);
-		return modelAndView;
-	}
-	
 	@RequestMapping("/booksread")
 	public ModelAndView fetchAll() {
 		BookDAO bookDAO = new BookDAO();
